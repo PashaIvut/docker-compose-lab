@@ -11,11 +11,14 @@ docker run -d --name redis redis
 ```
 <img width="969" height="311" alt="image" src="https://github.com/user-attachments/assets/011f9861-01df-4333-a4a4-4a8906d70c7c" />
 
+
 **Проверка:**
 ```bash
 docker ps
 ```
 <img width="1195" height="88" alt="image" src="https://github.com/user-attachments/assets/37feebe7-adff-46c4-a6f0-33e05c30d54e" />
+
+
 
 
 #### Шаг 2: Создание приложения rocketcounter
@@ -24,6 +27,7 @@ docker ps
 docker run -d --name rocketcounter --link redis:redis -p 8085:5000 rotorocloud/rocket-counter
 ```
 <img width="1449" height="382" alt="image" src="https://github.com/user-attachments/assets/12c41af5-3516-49ed-9ac7-a1d9ac33870d" />
+
 
 **Проверка:**
 ```bash
@@ -39,6 +43,8 @@ curl -s localhost:8085 | head
 Число ракет растет!
 
 
+
+
 #### Шаг 3: Удаление контейнеров
 
 ```bash
@@ -47,6 +53,8 @@ docker rm redis rocketcounter
 ```
 <img width="906" height="161" alt="image" src="https://github.com/user-attachments/assets/57f7ff59-b44d-4865-9dc7-07cd22eb3f90" />
 <img width="878" height="103" alt="image" src="https://github.com/user-attachments/assets/d3ea771a-7d1f-4286-a6f2-51600bb9d38e" />
+
+
 
 
 ### Часть 2. Описание стека в `docker-compose.yml`
@@ -58,6 +66,7 @@ docker compose up -d
 ```
 <img width="1884" height="179" alt="image" src="https://github.com/user-attachments/assets/df3f7a7f-948c-40e0-b74d-6113207efdf2" />
 
+
 **Проверка:**
 ```bash
 docker compose ps
@@ -65,6 +74,8 @@ curl -s localhost:8085 | head
 ```
 <img width="1883" height="172" alt="image" src="https://github.com/user-attachments/assets/155e04e7-5ed9-46fc-b9d3-87ca35b41cb9" />
 <img width="1378" height="681" alt="image" src="https://github.com/user-attachments/assets/7a1f94f7-6335-4234-a7e2-404169ae91e6" />
+
+
 
 
 ### Часть 3. Масштабирование приложения
@@ -78,6 +89,9 @@ ports:
   - "0:5000"   
 ```
 
+
+
+
 #### Шаг 2: Масштабирование
 
 ```bash
@@ -85,6 +99,7 @@ docker compose up -d --scale rocketcounter=2
 docker compose ps
 ```
 <img width="1885" height="175" alt="image" src="https://github.com/user-attachments/assets/94bfd130-d729-4c6c-af58-5bcb67c76087" />
+
 
 **Проверка:** В выводе `docker compose ps` у обоих экземпляров `rocketcounter` разные хост-порты.
 <img width="1896" height="226" alt="image" src="https://github.com/user-attachments/assets/4319be12-d5c3-4d94-9a5b-8c3756b2fce6" />
@@ -96,7 +111,8 @@ docker compose ps
 3. Аналогично нажмем "GET A ROCKET!" на втором экземпляре — счетчик увеличится.
 4. Обновим первую вкладку — счетчик будет таким же.
 
----
+
+
 
 ### Часть 4. Полное уничтожение стека
 
@@ -104,6 +120,7 @@ docker compose ps
 docker compose down -v
 ```
 <img width="1897" height="205" alt="image" src="https://github.com/user-attachments/assets/efd48ea7-ee65-4ef7-8b95-ecd548e62309" />
+
 
 **Проверка:**
 ```bash
