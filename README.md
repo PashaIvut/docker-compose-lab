@@ -58,7 +58,7 @@ docker rm redis rocketcounter
 
 
 ### Часть 2. Описание стека в `docker-compose.yml`
-Файл docker-compose.yml создан.
+Файл docker-compose.yml находится в репозитории.
 #### Запуск стека
 
 ```bash
